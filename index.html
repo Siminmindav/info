@@ -10,13 +10,14 @@
         <ul>
             <li><a href="https://siminmindav.github.io/ora/index.html">óra</a></li>
             <li><a href="https://siminmindav.github.io/troll/weboldal.html">rickroll</a></li>
-            <li><a href="https://siminmindav.github.io/weboldalak/a/001.html">001-től 020-ig random weboldalak</a></li>
+            <li><button onclick="ranold()">weboldalak 1-től 20-ig</button></li>
         </ul>
         <script>
-            /* semmi
-               --||--
-            */
-            
+            function ranold(){
+                let szám = Math.floor(Math.random()*20)+1;
+                let url = "https://siminmindav.github.io/weboldalak/a/" + szám.toString().padStart(3, '0') + ".html";
+                window.location.href = url;
+            }
         </script>
     </body>
 </html>
