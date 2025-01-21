@@ -11,11 +11,11 @@
         <ul>
             <li><a href="https://siminmindav.github.io/ora/index.html">óra</a></li>
             <li><a href="https://siminmindav.github.io/troll/weboldal.html">rickroll</a></li>
-            <li><a onclick="ranold()" href="#">weboldalak 1-től 20-ig</a></li>
+            <li><a onclick="ranold()" href="#">weboldalak 1-től 21-ig</a></li>
         </ul>
         <script>
             function ranold(){
-                let szám = Math.floor(Math.random()*20)+1;
+                let szám = Math.floor(Math.random()*21)+1;
                 let url = "https://siminmindav.github.io/weboldalak/a/" + szám.toString().padStart(3, '0') + ".html";
                 window.location.href = url;
             }
