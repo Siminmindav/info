@@ -6,6 +6,14 @@
         <meta name="keywords" content="siminmindav, info, infók, weboldalak">
         <title>siminmindav infók és weboldalak</title>
         <link rel="icon" type="image/gif" href="banán.gif">
+        <style>
+            iframe {
+                width: 90%;
+                height: 400px;
+                margin: 2px;
+                border: 5px black solid;
+            }
+        </style>
     </head>
     <body>
         <h1>Siminmindav infók és weboldalak</h1>
@@ -13,15 +21,86 @@
         <ul>
             <li><a href="https://siminmindav.github.io/ora/index.html">óra</a></li>
             <li><a href="https://siminmindav.github.io/troll/weboldal.html">rickroll</a></li>
-            <li><a onclick="ranold()" href="#">weboldalak 1-től 25-ig</a></li>
+            <li><a onclick="ranold()" href="#">weboldalak 1-től 25-ig random</a></li>
+            <li title="1-25: weboldalak amit én csináltam, 1001-1005 amit az AI csinált nagyrészt"><span>weboldal száma: </span><input id="beszám" oninput="update()" min="1" type="number" placeholder="szám"></li>
+            <ul>
+                <li>neve: <span id="nev"></span></li>
+                <li>linkje: <span id="link"></span></li>
+                <li>leírása: <span id="leiras"></span></li>
+            </ul>
         </ul>
         
+        <button onclick="toggleiframes()" title="gondold meg mit teszel" id="iframesgomb">weboldalak betöltése</button>
+        <div id="iframek" hidden="true">betöltés</div>
+
         <script>
+            let on = 1;
+            let iframelist = ""
+            let weboldalszótár = {
+    1: { nev: "Rickroll", link: "a/001.html", leiras: "Egy gifes Rickroll oldal." },
+    2: { nev: "JavaScript példák", link: "a/002.html", leiras: "Dátum, számítás, változók és nyomtatás példák." },
+    3: { nev: "Reklám felület", link: "a/003.html", leiras: "Bérelhető reklámfelület heti 200Ft-ért." },
+    4: { nev: "Téglalap generáló", link: "a/004.html", leiras: "Interaktív téglalap random számokkal." },
+    5: { nev: "Auto print", link: "a/005.html", leiras: "Oldal nyomtatása minden másodpercben." },
+    6: { nev: "Fibonacci generátor", link: "a/006.html", leiras: "Fibonacci sorozat számolása." },
+    7: { nev: "Unatkozom oldal", link: "a/007.html", leiras: "Unatkozóknak készült oldal gombokkal és képekkel." },
+    8: { nev: "Menü weboldal", link: "a/008.html", leiras: "Oldal navigációval és görgetős szöveggel." },
+    9: { nev: "Hmm oldal", link: "a/009.html", leiras: "Fura HTML tartalom, vicces szövegekkel." },
+    10: { nev: "HTML Minta", link: "a/010.html", leiras: "Különféle HTML elemek demonstrációja." },
+    11: { nev: "Fibonacci arány", link: "a/011.html", leiras: "Számsorozat és arányának kiszámítása." },
+    12: { nev: "Szöveg funkciók", link: "a/012.html", leiras: "JavaScript string függvények példákkal." },
+    13: { nev: "Eltelt idő 1970-től", link: "a/013.html", leiras: "Eltelt idő mérése 1970. január 1. óta." },
+    14: { nev: "Óra", link: "a/014.html", leiras: "Másodpercenként frissülő óra." },
+    15: { nev: "Számláló", link: "a/015.html", leiras: "Folyamatosan növekvő számláló 0-tól." },
+    16: { nev: "DOM manipulációk", link: "a/016.html", leiras: "HTML elemek módosítása gombokkal." },
+    17: { nev: "Óra képekkel", link: "a/017.html", leiras: "Másodpercalapú analóg órás animáció." },
+    18: { nev: "John Doe spam", link: "a/018.html", leiras: "John Doe ismétlése és növelése gombbal." },
+    19: { nev: "Autós oldal", link: "a/019.html", leiras: "Autós objektum vezérlés és mozgás." },
+    20: { nev: "Számrendszer átalakító", link: "a/020.html", leiras: "Szám konvertálása többféle számrendszerbe." },
+    21: { nev: "LNKO és LKKT", link: "a/021.html", leiras: "Legnagyobb közös osztó és legkisebb közös többszörös számítása." },
+    22: { nev: "Élet másodpercekben", link: "a/022.html", leiras: "Életkor másodpercekre számítva, földi kollektív idővel." },
+    23: { nev: "Prímkereső", link: "a/023.html", leiras: "Prímszámok növekvő vizsgálata és listázása." },
+    24: { nev: "Geometria számítások", link: "a/024.html", leiras: "Fok-radián átváltás, pitagoraszi számhármas." },
+    25: { nev: "Szerencsejáték", link: "a/025.html", leiras: "Gombvásárlós pénzügyi játék eseményekkel." },
+
+    1001: { nev: "Ugráló", link: "b/ugráló/adsf.html", leiras: "Lehet egy négyzettel ugrálni, meg más négyzetekre ugrani, és elhagyhatod a játék határait ha szeretnéd." },
+    1002: { nev: "Binominális-együtthatók", link: "b/binominálisegyütthatók.html", leiras: "Ijesztő matek." },
+    1003: { nev: "Cukorkás 1", link: "b/candyai1.html", leiras: "Cukorka." },
+    1004: { nev: "Cukorkás 2", link: "b/candyai2.html", leiras: "Cukorka de jobb." },
+    1005: { nev: "Homokozó", link: "b/homokozó.html", leiras: "Fekete négyzetek leesnek." },
+};
+
             function ranold(){
                 let szám = Math.floor(Math.random()*25)+1;
                 let url = "https://siminmindav.github.io/weboldalak/a/" + szám.toString().padStart(3, '0') + ".html";
                 window.location.href = url;
             }
+
+            function toggleiframes(){
+                on *= -1;
+                if (on === 1){
+                    document.getElementById("iframek").hidden = true;
+                    document.getElementById("iframesgomb").innerHTML = "weboldalak betöltése";
+                    document.getElementById("iframek").innerHTML = "";
+                } else {
+                    document.getElementById("iframek").hidden = false;
+                    for (let i = 1; i < 26; i++){
+                        let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
+                        iframelist += "<iframe src='" + url +"'> </iframe>";
+                }
+                document.getElementById("iframek").innerHTML = iframelist;
+                document.getElementById("iframesgomb").innerHTML = "weboldalak eltűntetése";
+                }
+            }
+
+            function update(){
+                let szám = parseInt(document.getElementById("beszám").value);
+                document.getElementById("nev").innerHTML = weboldalszótár[szám].nev;
+                document.getElementById("link").innerHTML = "<a href='https://siminmindav.github.io/weboldalak/" + weboldalszótár[szám].link +"'>link</a>";
+                document.getElementById("leiras").innerHTML = weboldalszótár[szám].leiras;
+            }
+
+
         </script>
     </body>
 </html>
