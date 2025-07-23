@@ -8,8 +8,8 @@
         <link rel="icon" type="image/gif" href="banán.gif">
         <style>
             iframe {
-                width: 90%;
-                height: 400px;
+                width: 95%;
+                height: 40vw;
                 margin: 2px;
                 border: 5px black solid;
             }
@@ -83,10 +83,11 @@
                     document.getElementById("iframesgomb").innerHTML = "weboldalak betöltése";
                     document.getElementById("iframek").innerHTML = "";
                 } else {
-                    document.getElementById("iframek").hidden = false;
-                    for (let i = 1; i < 26; i++){
-                        let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
-                        iframelist += "<iframe src='" + url +"'> </iframe>";
+                document.getElementById("iframek").hidden = false;
+                iframelist = "";
+                for (let i = 1; i < 26; i++){
+                    let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
+                    iframelist += "<iframe src='" + url +"'> </iframe>";
                 }
                 document.getElementById("iframek").innerHTML = iframelist;
                 document.getElementById("iframesgomb").innerHTML = "weboldalak eltűntetése";
