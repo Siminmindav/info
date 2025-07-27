@@ -72,7 +72,7 @@
 };
 
             function ranold(){
-                let szám = Math.floor(Math.random()*25)+1;
+                let szám = Math.floor(Math.random()*26)+1;
                 let url = "https://siminmindav.github.io/weboldalak/a/" + szám.toString().padStart(3, '0') + ".html";
                 window.location.href = url;
             }
@@ -86,7 +86,7 @@
                 } else {
                 document.getElementById("iframek").hidden = false;
                 iframelist = "";
-                for (let i = 1; i < 26; i++){
+                for (let i = 1; i < 27; i++){
                     let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
                     iframelist += "<iframe src='" + url +"'> </iframe>";
                 }
