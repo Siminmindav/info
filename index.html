@@ -13,6 +13,29 @@
                 margin: 2px;
                 border: 5px black solid;
             }
+            body {
+                background-color: #f7ddb3;
+            }
+            button {
+                background-color: #ffd899;  
+                border:1px solid #46300c;
+            }
+            input {
+                background-color: #ffd899;
+                border:1px solid #46300c;
+            }
+            input:hover {
+                background-color: #c59f61;
+                border: 1px solid #46300c;
+            }
+            button:hover {
+                background-color: #c59f61;
+                border:1px solid #46300c;
+            }
+            a {
+                text-decoration: underline;
+                color: #000000;
+            }
         </style>
     </head>
     <body>
@@ -22,7 +45,7 @@
             <li><a href="https://siminmindav.github.io/ora/index.html">óra</a></li>
             <li><a href="https://siminmindav.github.io/troll/weboldal.html">rickroll</a></li>
             <li><a onclick="ranold()" href="#">weboldalak 1-től 26-ig random</a></li>
-            <li title="1-26: weboldalak amitket én csináltam, 1001-1005 amitket az AI csinált nagyrészt"><span>weboldal száma: </span><input id="beszám" oninput="update()" min="1" type="number" placeholder="szám"></li>
+            <li title="1-26: weboldalak amitket én csináltam, 1001-1005: amitket az AI csinált nagyrészt, 2000-nél több: mások weboldalai"><span>weboldal száma: </span><input id="beszám" oninput="update()" min="1" type="number" placeholder="szám"></li>
             <ul>
                 <li>neve: <span id="nev"></span></li>
                 <li>linkje: <span id="link"></span></li>
@@ -69,6 +92,8 @@
     1003: { nev: "Cukorkás 1", link: "b/candyai1.html", leiras: "Cukorka." },
     1004: { nev: "Cukorkás 2", link: "b/candyai2.html", leiras: "Cukorka de jobb." },
     1005: { nev: "Homokozó", link: "b/homokozó.html", leiras: "Fekete négyzetek leesnek." },
+
+    2001: { nev: "Geoguesser alternative", link: "https://openguessr.com/", leiras: "Egy földgömbön kell kitalálni hogy hol vagy." },
 };
 
             function ranold(){
@@ -97,8 +122,18 @@
 
             function update(){
                 let szám = parseInt(document.getElementById("beszám").value);
+                if (!weboldalszótár[szám]){
+                    document.getElementById("nev").innerHTML = "írj be más számot";
+                    document.getElementById("link").innerHTML = "semmi";
+                    document.getElementById("leiras").innerHTML = "semmi";
+                    return;
+                }
                 document.getElementById("nev").innerHTML = weboldalszótár[szám].nev;
-                document.getElementById("link").innerHTML = "<a href='https://siminmindav.github.io/weboldalak/" + weboldalszótár[szám].link +"'>link</a>";
+                if (szám > 2000){
+                    document.getElementById("link").innerHTML = "<a href='"+weboldalszótár[szám].link +"'>link</a>";
+                } else {
+                    document.getElementById("link").innerHTML = "<a href='https://siminmindav.github.io/weboldalak/" + weboldalszótár[szám].link +"'>link</a>";
+                }
                 document.getElementById("leiras").innerHTML = weboldalszótár[szám].leiras;
             }
 
