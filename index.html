@@ -36,9 +36,20 @@
                 text-decoration: underline;
                 color: #000000;
             }
+            .count {
+                float: right;
+                background-color: #ffd899;
+                border: #46300c 2px solid;
+                padding: 5px;
+            }
+            .count:hover {
+                background-color: #c59f61;
+                border: 2px solid #46300c;
+            }
         </style>
     </head>
     <body>
+        <pre class="count" id="count" title="ez nem egy gomb"></pre>
         <h1>Siminmindav infók és weboldalak</h1>
         <p>A fentebbi szöveg azért kell hogy a gugli indexelje ezt az oldalt.</p>
         <ul>
@@ -137,6 +148,11 @@
                 document.getElementById("leiras").innerHTML = weboldalszótár[szám].leiras;
             }
 
+            // látogatások
+            látogatások = localStorage.getItem("visits") || 0;
+            látogatások++;
+            localStorage.setItem("visits", látogatások);
+            document.getElementById("count").innerHTML = "Ennyiszer indítottad el ezt a weboldalt: " + látogatások;
 
         </script>
     </body>
