@@ -46,16 +46,23 @@
                 background-color: #c59f61;
                 border: 2px solid #46300c;
             }
-            @media screen and (max-width: 700px) {
-                .count{
+            .count2 {
+                display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+                .count1{
                     display: none;
                 }
+                .count2 {
+                    display: block;
+                }
             }
-            
         </style>
     </head>
     <body>
-        <pre class="count" id="count" title="ez nem egy gomb"></pre>
+        <pre class="count1 count" id="count" title="ez nem egy gomb"></pre>
+        <pre class="count2 count" id="count2"  title="ez nem egy gomb">asd</pre>
         <h1>Siminmindav infók és weboldalak</h1>
         <p>A fentebbi szöveg azért kell hogy a gugli indexelje ezt az oldalt.</p>
         <ul>
@@ -159,6 +166,7 @@
             látogatások++;
             localStorage.setItem("visits", látogatások);
             document.getElementById("count").innerHTML = "Ennyiszer indítottad el ezt a weboldalt: " + látogatások;
+            document.getElementById("count2").innerHTML = látogatások;
 
         </script>
     </body>
