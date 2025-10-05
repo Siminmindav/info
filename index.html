@@ -57,6 +57,9 @@
                 .count2 {
                     display: block;
                 }
+                body {
+                    font-size: 20px;
+                }
             }
         </style>
     </head>
@@ -134,12 +137,12 @@
                     document.getElementById("iframek").innerHTML = "";
                 } else {
                 document.getElementById("iframek").hidden = false;
-                iframelist = "";
+                pagelist = "";
                 for (let i = 1; i < 27; i++){
                     let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
-                    iframelist += "<iframe src='" + url +"'> </iframe>";
+                    pagelist += "<p>Oldal neve: <b>" + weboldalszótár[i].nev + "</b>, száma: " + i + ", linkje: <a href='" + url + "'>link</a></p> <iframe src='" + url +"'> </iframe>";
                 }
-                document.getElementById("iframek").innerHTML = iframelist;
+                document.getElementById("iframek").innerHTML = pagelist;
                 document.getElementById("iframesgomb").innerHTML = "weboldalak eltűntetése";
                 }
             }
