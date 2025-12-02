@@ -72,8 +72,8 @@
             <li><a href="https://github.com/Siminmindav">github link</a></li>
             <li><a href="https://siminmindav.github.io/ora/index.html">óra</a></li>
             <li><a href="https://siminmindav.github.io/troll/weboldal.html">rickroll</a></li>
-            <li><a onclick="ranold()" href="#">weboldalak 1-től 27-ig random</a></li>
-            <li title="1-27: weboldalak amitket én csináltam, 1001-1005: amitket az AI csinált nagyrészt, 2000-nél több: mások weboldalai"><span>weboldal száma: </span><input id="beszám" oninput="update()" min="1" type="number" placeholder="szám"></li>
+            <li><a onclick="ranold()" href="#">weboldalak 1-től 28-ig random</a></li>
+            <li title="1-28: weboldalak amitket én csináltam, 1001-1005: amitket az AI csinált nagyrészt, 2000-nél több: mások weboldalai"><span>weboldal száma: </span><input id="beszám" oninput="update()" min="1" type="number" placeholder="szám"></li>
             <ul>
                 <li>neve: <span id="nev"></span></li>
                 <li>linkje: <span id="link"></span></li>
@@ -115,6 +115,7 @@
     25: { nev: "Szerencsejáték", link: "a/025.html", leiras: "Gombvásárlós pénzügyi játék eseményekkel." },
     26: { nev: "Weboldalas rekurzió", link: "a/026.html", leiras: "Visszhang, visszhang, visszhang." },
     27: { nev: "Színválasztó", link: "a/027.html", leiras: "Tudsz színt választani, meg sok más." },
+    28: { nev: "Canvas példák", link: "a/028.html", leiras: "Állatorvosi ló a canvasszal." },
 
     1001: { nev: "Ugráló", link: "b/ugráló/adsf.html", leiras: "Lehet egy négyzettel ugrálni, meg más négyzetekre ugrani, és elhagyhatod a játék határait ha szeretnéd." },
     1002: { nev: "Binominális-együtthatók", link: "b/binominálisegyütthatók.html", leiras: "Ijesztő matek." },
@@ -126,7 +127,7 @@
 };
 
             function ranold(){
-                let szám = Math.floor(Math.random()*27)+1;
+                let szám = Math.floor(Math.random()*28)+1;
                 let url = "https://siminmindav.github.io/weboldalak/a/" + szám.toString().padStart(3, '0') + ".html";
                 window.location.href = url;
             }
@@ -140,7 +141,7 @@
                 } else {
                 document.getElementById("iframek").hidden = false;
                 pagelist = "";
-                for (let i = 1; i < 28; i++){
+                for (let i = 1; i < 29; i++){
                     let url = "https://siminmindav.github.io/weboldalak/a/" + i.toString().padStart(3, '0') + ".html";
                     pagelist += "<p>Oldal neve: <b>" + weboldalszótár[i].nev + "</b>, száma: " + i + ", linkje: <a href='" + url + "'>link</a></p> <iframe src='" + url +"'> </iframe>";
                 }
